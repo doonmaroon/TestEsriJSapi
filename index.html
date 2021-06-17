@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>ArcGIS API for JavaScript Tutorials: Display your location</title>
+
+
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.19/"></script>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    </style>
+
+    <script>require([ "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/widgets/Locate",
+      "esri/widgets/Track",
+      "esri/Graphic"
+
+      ], function(esriConfig,
+        Map,
+        MapView,
+        Locate,
+        Track,
+        Graphic) {
+
+        esriConfig.apiKey="AAPK5c1fd8ea23484507b69c598c20981676AvdenWLe5UbkQtJlnlFzjl1VCQQIcFIPSakif2YQ-3Ei0Ue18Jyfr62yvdyRJ4U3";
+
+        const map=new Map( {
+            basemap: "arcgis-navigation"
+          });
+
+        const view=new MapView( {
+            container: "viewDiv",
+            map: map,
+            center: [-40, 28],
+            zoom: 1
+          });
+
+        const locate = new Locate({
+            view: view,
+            usingHeadingEnabled: false,
+            goToOverride: function(view, options){
+              options.target.scale = 1500;
+              return view.goTo(options, targe);
+            }
+          });
+        view.ui.add(locate, "top-left");
+      }
+
+    );
+    </script>
+    </head>
+    <body>
+    <div id="app"></div>
+    <div id="map"></div>
+    <div id="viewDiv"></div>
+    </body>
+    </html>
